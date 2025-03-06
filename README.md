@@ -168,3 +168,63 @@ class OrderedObjects {
         return binarySearch(name) != -1;
     }
 }
+
+
+// MainApp.java
+import java.util.Scanner;
+
+public class MainApp {
+    public static void main(String[] args) {
+        OrderedObjects employeeList = new OrderedObjects();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n1. Add Employee");
+            System.out.println("2. Check if Employee Exists");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            if (choice == 1) {
+                System.out.print("Enter Employee Code: ");
+                String code = scanner.nextLine();
+                System.out.print("Enter Employee Name: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter Position: ");
+                String position = scanner.nextLine();
+                System.out.print("Enter Phone Number: ");
+                String phone = scanner.nextLine();
+                System.out.print("Enter Office Number: ");
+                int officeNum = scanner.nextInt();
+                scanner.nextLine(); // Consume newline
+
+                boolean added = employeeList.addObject(code, name, position, phone, officeNum);
+                if (added) {
+                    System.out.println("Employee added successfully!");
+                } else {
+                    System.out.println("Employee NOT added! Name already exists or list is full.");
+                }
+            } 
+            else if (choice == 2) {
+                System.out.print("Enter Employee Name to Search: ");
+                String name = scanner.nextLine();
+                if (employeeList.employeeExists(name)) {
+                    System.out.println("Employee exists in the system.");
+                } else {
+                    System.out.println("Employee not found.");
+                }
+            } 
+            else if (choice == 3) {
+                System.out.println("Exiting...");
+                break;
+            } 
+            else {
+                System.out.println("Invalid choice! Try again.");
+            }
+        }
+
+        scanner.close();
+    }
+}
